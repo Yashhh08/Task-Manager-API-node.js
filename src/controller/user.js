@@ -5,6 +5,14 @@ const { sendWelcomeEmail, sendDeletionMail } = require("../configs/email");
 
 const router = new express.Router();
 
+router.get("/", (req, res) => {
+  try {
+    res.send("Welcome to Task-Manager-API");
+  } catch (err) {
+    res.status(500).send({ err: err.message });
+  }
+});
+
 router.post("/users", async (req, res) => {
   try {
     const user = new User(req.body);
